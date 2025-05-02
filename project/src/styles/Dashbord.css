@@ -1,0 +1,279 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dashboard-container {
+  padding: 30px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+}
+
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* สำหรับกราฟ OEE, EFF และ Task */
+.dashboard-top {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.oee-card, .compare-card {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.oee-card {
+  flex: 1; /* ขนาดเล็กกว่า compare-card */
+  margin-left: 30px; /* ขยับซ้ายเข้าหน่อย */
+}
+
+.compare-card {
+  flex: 2; /* ขนาดใหญ่กว่า oee-card */
+  margin-right: 20px;
+}
+
+.task-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-left: 30px;
+  margin-right: 20px;
+  
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 10px 50px 20px 30px;
+  position: relative;
+}
+
+.filter-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1170px;
+  border-bottom: 2px solid #000000;
+  border-radius: 10px;
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+}
+
+.filter label {
+  font-size: 13px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+}
+
+.filter-label {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 3px;
+}
+
+.filter-input {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #111827;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Info Cards */
+.cards-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+
+.info-card {
+  position: relative;
+  width: 220px;
+  height: 130px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.vertical-bar {
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 12px;
+  width: 4px;
+  border-radius: 8px;
+  background: black;
+}
+
+.vertical-bar.up {
+  background: linear-gradient(to bottom, #192030, #3b82f6);
+}
+
+.vertical-bar.down {
+  background: linear-gradient(to bottom, #f87171, #ef4444);
+}
+
+.info-content {
+  margin-left: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-title {
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.info-icon {
+  font-size: 20px;
+  color: #6366f1;
+}
+
+.info-value {
+  font-size: 26px;
+  font-weight: bold;
+  color: black;
+  margin-top: 4px;
+}
+
+.info-unit {
+  font-size: 16px;
+  font-weight: normal;
+  margin-left: 6px;
+}
+
+.info-change {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.info-change.positive {
+  color: #22c55e;
+}
+
+.info-change.negative {
+  color: #ef4444;
+}
+
+.change-value {
+  margin-left: 4px;
+}
+
+.change-text {
+  margin-left: 8px;
+  color: #94a3b8;
+}
+
+/* OEE Chart */
+.oee-chart {
+  background: #f9f9f9;
+  padding: 15px;
+  text-align: center;
+  min-width: 250px;
+}
+
+.oee-circle {
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.oee-center .oee-label {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.oee-center .oee-value {
+  font-size: 20px;
+  color: red;
+}
+
+.oee-details {
+  margin-top: 10px;
+}
+
+/* Task Completion Chart */
+.task-chart {
+  background: #fff;
+  padding: 15px;
+  min-width: 500px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.target-line {
+  margin-top: 10px;
+  font-weight: bold;
+  color: green;
+}
+
+
