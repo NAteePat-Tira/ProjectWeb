@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Dashbord.css';
 import FilterBar from '../components/Dashbord/FilterBar';
 import InfoCard from '../components/Dashbord/InfoCard';
 import OEEChart from '../components/Dashbord/OEE';
@@ -23,9 +22,9 @@ const Dashboard = () => {
   }, [navigate]);
 
   return (
-    <div className="Dashboard px-6 flex flex-col">
+    <div className="px-4 md:px-8 py-4 flex flex-col">
       {/* FilterBar */}
-      <div className="ml-6">
+      <div className="mb-6">
         <FilterBar 
           date={date}
           product={product}
@@ -39,28 +38,28 @@ const Dashboard = () => {
       </div>
 
       {/* Info Cards */}
-      <div className="cards-row justify-center mt-6">
-        <InfoCard title="Today Plans" value="60000" unit="Pcs." change="6.5%" status="up" />
-        <InfoCard title="Actual" value="56000" unit="Pcs." change="-0.2%" status="down" />
-        <InfoCard title="Defect" value="400" unit="Pcs." change="-0.6%" status="down" />
-        <InfoCard title="Down Time" value="120" unit="min." change="-1%" status="down" />
-        <InfoCard title="Efficiency (%)" value="93" unit="%" change="+1%" status="up" />
+      <div className="flex flex-wrap gap-4 justify-center">
+        <InfoCard title="Today Plans" value={60000} unit="Pcs." change="6.5%" status="up" />
+        <InfoCard title="Actual" value={56000} unit="Pcs." change="-0.2%" status="down" />
+        <InfoCard title="Defect" value={400} unit="Pcs." change="-0.6%" status="down" />
+        <InfoCard title="Down Time" value={120} unit="min." change="-1%" status="down" />
+        <InfoCard title="Efficiency (%)" value={93} unit="%" change="+1%" status="up" />
       </div>
 
       {/* Graphs */}
-      <div className="mt-7 flex flex-col gap-6 ">
+      <div className="mt-10 flex flex-col gap-6">
         {/* Top Row: OEEChart and CompareEfficiencyChart side by side */}
-        <div className="flex flex-col md:flex-row justify-between mb-6 gap-6">
-          <div className="oee-card w-full md:w-1/2">
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="w-full md:w-1/2">
             <OEEChart />
           </div>
-          <div className="compare-card w-full md:w-1/2">
+          <div className="w-full md:w-1/2">
             <CompareEfficiencyChart />
           </div>
         </div>
 
         {/* Bottom: TaskCompletionChart */}
-        <div className="task-card">
+        <div>
           <TaskCompletionChart />
         </div>
       </div>

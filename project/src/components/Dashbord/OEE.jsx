@@ -13,49 +13,51 @@ const OEEChart = () => {
   const totalOEE = oeeData.reduce((sum, entry) => sum + entry.value, 0);
 
   return (
-    <div className="oee-chart-wrapper">
-      <h2 className="text-slate-400 font-semibold text-[17px] mb-2 text-center">
+    <div className="w-full bg-white rounded-2xl shadow-md p-4">
+      <h2 className="text-slate-400 font-semibold text-[17px] mb-4 text-center">
         Overall Equipment Effectiveness
       </h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <PieChart>
-          <Pie
-            data={oeeData}
-            dataKey="value"
-            innerRadius="60%"
-            outerRadius="100%"
-            paddingAngle={5}
-            startAngle={90}
-            endAngle={-270}
-          >
-            {oeeData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <text
-            x="50%" y="45%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize="24"
-            fontWeight="bold"
-            fill="#ef4444"
-          >
-            {`${Math.round((totalOEE / 300) * 100)}%`}
-          </text>
-          <text
-            x="50%" y="58%"
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize="16"
-            fill="#000"
-          >
-            OEE
-          </text>
-        </PieChart>
-      </ResponsiveContainer>
+      <div className="w-full h-72">
+        <ResponsiveContainer width="100%" height="100%">
+          <PieChart>
+            <Pie
+              data={oeeData}
+              dataKey="value"
+              innerRadius="60%"
+              outerRadius="100%"
+              paddingAngle={5}
+              startAngle={90}
+              endAngle={-270}
+            >
+              {oeeData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <text
+              x="50%" y="45%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize="24"
+              fontWeight="bold"
+              fill="#ef4444"
+            >
+              {`${Math.round((totalOEE / 300) * 100)}%`}
+            </text>
+            <text
+              x="50%" y="58%"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize="16"
+              fill="#000"
+            >
+              OEE
+            </text>
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
 
       {/* Custom Legend */}
-      <div className="flex justify-center gap-4 mt-4 text-sm">
+      <div className="flex flex-wrap justify-center gap-4 mt-4 text-sm">
         {oeeData.map((entry, index) => (
           <div key={entry.name} className="flex items-center gap-2">
             <span
