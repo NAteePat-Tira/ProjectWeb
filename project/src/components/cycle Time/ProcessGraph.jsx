@@ -5,31 +5,30 @@ import {
   Line,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
   LabelList,
 } from "recharts";
-import "../../styles/CycleTime.css"; 
 
-const ProcessGraph = ({ title, data }) => {
+const ProcessGraph = ({ data, title }) => {
+  const sortedData = [...data].sort((a, b) => b.step - a.step); // Step 10 to 1
+
   return (
-    <div className="graph-container">
-      <h3 className="graph-title">{title}</h3>
-      <ResponsiveContainer width="100%" height={500}>
+    <div className="w-[300px] bg-white shadow-md rounded p-2 m-2">
+      <h3 className="text-center font-semibold text-gray-600 mb-2">{title}</h3>
+      <ResponsiveContainer width="100%" height={550}>
         <ComposedChart
           layout="vertical"
-          data={data}
+          data={sortedData}
           margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
         >
-          <CartesianGrid stroke="#ccc" />
-          <XAxis type="number" />
-          <YAxis dataKey="step" type="category" />
+          <XAxis type="number" domain={[0, 'dataMax + 50']} />
+          <YAxis type="category" dataKey="step" />
           <Tooltip />
-          <Bar dataKey="value" barSize={20} fill="rgba(72, 99, 187, 0.6)">
-            <LabelList dataKey="value" position="right" />
+          <Bar dataKey="value" barSize={20} fill="rgba(106, 90, 205, 0.6)">
+            <LabelList dataKey="value" position="right" fill="#333" />
           </Bar>
-          <Line type="monotone" dataKey="value" stroke="#f44336" />
+          <Line type="monotone" dataKey="value" stroke="#e60000" dot={{ r: 3 }} />
         </ComposedChart>
       </ResponsiveContainer>
     </div>

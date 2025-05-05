@@ -47,7 +47,7 @@ export default function Sidebar() {
           </button>
 
           <button
-            onClick={() => navigate('/production')}
+            onClick={() => navigate('/production_overview')}
             className="px-4 py-2 rounded text-left font-bold transition hover:bg-gray-700 text-white"
           >
             Production Overview

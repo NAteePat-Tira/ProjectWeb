@@ -1,22 +1,10 @@
 import React, { useState } from "react";
-import ProcessGraph from "../components/cycle Time/ProcessGraph";
-import "../styles/CycleTime.css"; 
+import ProductionVolumeChart from "../components/overall/Productoverall";
 import Filter from '../components/Monitoring/Filter';
+import "../styles/overview.css"; 
 
-const sampleData = [
-  { step: 10, value: 50 },
-  { step: 9, value: 120 },
-  { step: 8, value: 180 },
-  { step: 7, value: 220 },
-  { step: 6, value: 300 },
-  { step: 5, value: 450 },
-  { step: 4, value: 500 },
-  { step: 3, value: 300 },
-  { step: 2, value: 200 },
-  { step: 1, value: 100 },
-];
 
-const CycleTime = () => {
+const Production_Overview = () => {
 
   const [date, setDate] = useState('');
   const [product, setProduct] = useState('None');
@@ -60,14 +48,14 @@ const CycleTime = () => {
           onClearFilters={handleClearFilters}
         />
       </div>
-      <div className="bg-transparent rounded shadow-md p-4 w-full flex gap-6">
-        <ProcessGraph data={sampleData} title="Process 1" />
-        <ProcessGraph data={sampleData} title="Process 1" />
-        <ProcessGraph data={sampleData} title="Process 1" />
-      </div>
+
+        {/* Insert Chart Component Below */}
+        <div className="Config">
+            <ProductionVolumeChart />
+        </div>
 
     </div>
   );
 };
 
-export default CycleTime;
+export default Production_Overview;

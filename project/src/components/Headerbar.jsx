@@ -9,7 +9,8 @@ const pageTitles = {
   '/': 'Dashboard',
   '/monitoring': 'Monitoring',
   '/reports': 'Reports',
-  '/cycletime': 'Cycle Time Analysis', // Add this line for Cycle Time page
+  '/cycletime': 'Cycle Time Analysis',
+  '/production_overview': 'Production Overview'  
 };
 
 export default function Header() {

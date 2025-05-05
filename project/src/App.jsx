@@ -6,18 +6,24 @@ import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import Monitoring from './Pages/Monitoring';
 import CycleTime from './Pages/CycleTime';
+import Production_Overview from './Pages/Overview';
 
 function Layout({ children, isLoggedIn }) {
   return (
     <div className="w-screen h-screen flex bg-gray-100">
+      {/* Sidebar - only visible if logged in */}
       {isLoggedIn && (
-        <div className="w-60 bg-white">
+        <div className="w-60 bg-white h-full sticky top-0">
           <Sidebar />
         </div>
       )}
+      
+      {/* Main Content Area */}
       <div className="flex-1 flex flex-col">
+        {/* Header - only visible if logged in */}
         {isLoggedIn && <Header />}
-        <div className="flex-1 overflow-auto">
+        
+        <div className="flex-1 overflow-auto p-4">
           {children}
         </div>
       </div>
@@ -35,9 +41,10 @@ export default function App() {
     setIsLoading(false);
   }, []);
 
+  // PrivateRoute component to handle protected routes
   const PrivateRoute = ({ children }) => {
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <div className="flex justify-center items-center h-screen">Loading...</div>; // Optional: Add a spinner here
     }
     return isLoggedIn ? children : <Navigate to="/login" replace />;
   };
@@ -47,6 +54,8 @@ export default function App() {
       <Layout isLoggedIn={isLoggedIn}>
         <Routes>
           <Route path="/login" element={<Login />} />
+          
+          {/* Protected Routes */}
           <Route
             path="/dashboard"
             element={
@@ -71,6 +80,16 @@ export default function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/Production_Overview"
+            element={
+              <PrivateRoute>
+                <Production_Overview />
+              </PrivateRoute>
+            }
+          />
+          
+          {/* Redirect any unknown routes to login or dashboard */}
           <Route
             path="*"
             element={<Navigate to={isLoggedIn ? "/dashboard" : "/login"} replace />}
