@@ -13,22 +13,40 @@ const efficiencyData = [
 
 const CompareEfficiencyChart = () => {
   return (
-    <>
-      <h2 className='text-slate-400 font-semibold text-[17px]'>Compare Efficiency</h2>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart layout="vertical" data={efficiencyData}>
+    <div className="bg-white shadow-md Effbg">
+      <h2 className='text-slate-500 font-bold text-[20px] Efftext'>
+        Compare Efficiency
+      </h2>
+      <ResponsiveContainer height={278}>
+        <BarChart
+          layout="vertical"
+          data={efficiencyData}
+          margin={{ top: 0, right: 30, left: 0, bottom: 0 }} // <-- เพิ่มตรงนี้
+        >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis type="number" domain={[0, 100]} tickFormatter={(tick) => `${tick}%`} />
+          <XAxis
+            type="number"
+            domain={[0, 100]}
+            tickFormatter={(tick) => `${tick}%`}
+          />
           <YAxis type="category" dataKey="name" />
           <Tooltip formatter={(value) => `${value}%`} />
-          <Bar dataKey="efficiency" fill="#22c55e" label={{ position: 'right', formatter: (value) => `${value}%` }}>
+          <Bar
+            dataKey="efficiency"
+            fill="#22c55e"
+            label={{ position: 'insideRight', formatter: (value) => `${value}%` }} // <-- เปลี่ยนตรงนี้
+          >
             {efficiencyData.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={entry.name === 'Line B' ? '#facc15' : '#22c55e'} />
+              <Cell
+                key={`cell-${index}`}
+                fill={entry.name === 'Line B' ? '#facc15' : '#22c55e'}
+              />
             ))}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-    </>
+
+    </div>
   );
 };
 

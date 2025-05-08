@@ -1,30 +1,41 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // <<== เพิ่มเข้ามา
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
+import { AuthContext } from '../AuthContext'; // ← เพิ่ม
 
 function Login() {
-  const navigate = useNavigate(); // <<== เพิ่มตัวนี้
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [isChecked, setIsChecked] = useState(false);
 
+  const { setUser, setUserId } = useContext(AuthContext); // ← ดึง context
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!username || !password) {
       alert('Please enter username and password.');
       return;
     }
 
+    // จำลองการ login
     console.log('Login attempt with:', {
       username,
       password,
       rememberMe: isChecked,
     });
 
-    // Login สำเร็จ → เก็บ token สมมติใน localStorage
+    // เก็บลง localStorage
     localStorage.setItem('token', 'mock-token');
+    localStorage.setItem('user', JSON.stringify({ name: username }));
+    localStorage.setItem('userId', '1'); // userId จำลอง
 
-    // แล้วเปลี่ยนหน้าไป Dashboard
+    // เซ็ตค่าเข้า AuthContext
+    setUser({ name: username });
+    setUserId(1);
+
+    // เปลี่ยนหน้า
     navigate('/dashboard');
   };
 
@@ -42,7 +53,7 @@ function Login() {
 
       <div className="w-full max-w-[1280px] mx-auto relative">
         <form onSubmit={handleSubmit} className="login-form">
-          <h1 className="login-title ">Login</h1>
+          <h1 className="login-title">Login</h1>
 
           <input
             type="text"

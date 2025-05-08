@@ -8,7 +8,9 @@
 }
 
 .dashboard-container {
-  padding: 30px;
+  padding: 30px 20px;  /* 30px on top/bottom and 20px left/right */
+  margin-left: 20px;    /* margin-left */
+  margin-right: 20px;   /* margin-right */
   background-color: #f9fafb;
   min-height: 100vh;
 }
@@ -35,13 +37,11 @@
 }
 
 .oee-card {
-  flex: 1; /* ขนาดเล็กกว่า compare-card */
-  margin-left: 30px; /* ขยับซ้ายเข้าหน่อย */
+  flex: 1;
 }
 
 .compare-card {
-  flex: 2; /* ขนาดใหญ่กว่า oee-card */
-  margin-right: 20px;
+  flex: 2;
 }
 
 .task-card {
@@ -133,7 +133,6 @@
   margin-bottom: 20px;
 }
 
-
 .info-card {
   position: relative;
   width: 220px;
@@ -144,7 +143,7 @@
   padding: 16px;
   display: flex;
   align-items: flex-start;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .vertical-bar {
@@ -275,4 +274,91 @@
   color: green;
 }
 
+/* Responsive Design */
+@media (max-width: 1000px) {
+  .filter-bar {
+    display: none;  /* Hide filter bar */
+  }
+}
 
+@media (max-width: 768px) {
+  .filter-bar {
+    padding: 10px 20px;  /* ลด padding สำหรับมือถือ */
+  }
+
+  .dashboard-top {
+    flex-direction: column; /* เปลี่ยนแนวการวางการ์ด */
+  }
+
+  .oee-card, .compare-card {
+    flex: 1 0 100%;  /* ให้การ์ดกว้างเต็มจอ */
+  }
+
+  .task-card {
+    margin-left: 0;  /* ไม่มี margin ซ้าย */
+    margin-right: 0; /* ไม่มี margin ขวา */
+    margin-top: 10px;
+  }
+
+  .filter-bar::after {
+    width: 100%; /* ให้เส้นยาวเต็มความกว้าง */
+  }
+}
+
+/*Task Graph main page */
+.container{
+  margin-top: 20px;
+}
+
+.graphmove{
+  margin-top: 10px;
+}
+.textmove{
+  margin-left: 15px;
+  margin-top : 10px;
+}
+.background{
+  padding-left: 20px;     
+  padding-right: 20px;    
+  padding-top:10px;
+}
+
+/*OEE Graph main page*/
+
+.OEE_EFFcontain{
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.OEEtop {
+  margin-top : 10px
+}
+
+.OEEbg{
+  padding-left: 20px;
+}
+.OEEtext{
+  margin-top: 10px;
+  
+}
+.OEEbg{
+  padding-top:2px;
+  padding-bottom:2px;
+}
+
+/*Eff Graph main page*/
+.Effcontain{
+  margin-left: 20px;
+}
+
+.Efftext{
+  margin-left:15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.Effbg{
+  padding-top: 0.04px;
+  padding-bottom:10px;
+}

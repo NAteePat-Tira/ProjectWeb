@@ -67,19 +67,15 @@ const Monitoring = () => {
         />
       </div>
 
-      <div className="main-content">
-        <div className="camera-section">
-          <h3>Live Camera Feed</h3>
-          <CameraFeed />
-        </div>
+      {/* Monitorng & Video */} 
+      <div className='flex flex-wrap justify-center gap-4'>
+        {/* Monitorng */} 
+          <div className='flex-1 min-w-[300px]'>
+            <CameraFeed/>
+          </div>
 
-        <div className="product-section">
-          <h3>Monitoring Product</h3>
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} number={product.id} />
-          ))}
-        </div>
       </div>
+
 
     </div>
   );
