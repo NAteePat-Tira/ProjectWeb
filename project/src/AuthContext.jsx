@@ -15,19 +15,33 @@ export function AuthProvider({ children }) {
     if (token && savedUser && savedUserId) {
       setUser(JSON.parse(savedUser));
       setUserId(Number(savedUserId));
+    } else {
+      setUser(null);
+      setUserId(null);
     }
 
     setLoading(false);
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('userId');
+    setUser(null);
+    setUserId(null);
+  };
+
   return (
-    <AuthContext.Provider value={{
-      user,
-      userId,
-      loading,
-      setUser,
-      setUserId,
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        userId,
+        loading,
+        setUser,
+        setUserId,
+        logout, // <<--- Export logout function
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

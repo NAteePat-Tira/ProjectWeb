@@ -3,24 +3,19 @@ import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid,
   Tooltip, ResponsiveContainer, Cell
 } from 'recharts';
+import '../../styles/Dashbord.css'; 
 
-const efficiencyData = [
-  { name: 'Line A', efficiency: 85 },
-  { name: 'Line B', efficiency: 76 },
-  { name: 'Line C', efficiency: 91 },
-  
-];
-
-const CompareEfficiencyChart = () => {
+// Accept 'data' as a prop
+const CompareEfficiencyChart = ({ data }) => {
   return (
     <div className="bg-white shadow-md Effbg">
-      <h2 className='text-slate-500 font-bold text-[20px] Efftext'>
+      <h2 className='text-slate-500 font-bold text-xl Efftext'>
         Compare Efficiency
       </h2>
-      <ResponsiveContainer height={278}>
+      <ResponsiveContainer height={320}>
         <BarChart
           layout="vertical"
-          data={efficiencyData}
+          data={data} // Use the passed 'data' prop here
           margin={{ top: 0, right: 30, left: 0, bottom: 0 }} // <-- เพิ่มตรงนี้
         >
           <CartesianGrid strokeDasharray="3 3" />
@@ -36,7 +31,7 @@ const CompareEfficiencyChart = () => {
             fill="#22c55e"
             label={{ position: 'insideRight', formatter: (value) => `${value}%` }} // <-- เปลี่ยนตรงนี้
           >
-            {efficiencyData.map((entry, index) => (
+            {data.map((entry, index) => ( // Use the passed 'data' prop here
               <Cell
                 key={`cell-${index}`}
                 fill={entry.name === 'Line B' ? '#facc15' : '#22c55e'}
@@ -45,7 +40,6 @@ const CompareEfficiencyChart = () => {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
-
     </div>
   );
 };

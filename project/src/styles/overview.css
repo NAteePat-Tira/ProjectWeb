@@ -1,7 +1,18 @@
+.config{
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom : 20px;
+  padding-top : 20px;
 
-.Config {
-  justify-content: center;
+}
+
+/* productcard*/
+
+.card{
+  margin-top : 20px;
+}
+
+.text {
+  margin-bottom:10px;
   margin-left : 20px;
-  margin-top : 20px
-  
 }

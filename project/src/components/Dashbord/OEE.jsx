@@ -1,30 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import React, { useEffect, useState } from "react";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import '../../styles/Dashbord.css'; 
 
-const oeeData = [
-  { name: 'Performance', value: 50 },
-  { name: 'Availability', value: 20 },
-  { name: 'Quality', value: 30 },
+const data = [
+  { name: "Performance", value: 0.29 },
+  { name: "Availability", value: 0.2 },
+  { name: "Quality", value: 0.3 },
 ];
 
-const COLORS = ['#0f172a', '#6366f1', '#e2e8f0'];
+const COLORS = ["#0f111a", "#475be8", "#e4e8f0"];
 
 const OEEChart = () => {
-  const totalOEE = oeeData.reduce((sum, entry) => sum + entry.value, 0);
-  const targetValue = Math.round((totalOEE / 300) * 100);
+  const finalOEE = Math.round(
+    data.reduce((product, d) => product * d.value, 1) * 100
+  );
 
-  const [displayValue, setDisplayValue] = useState(0);
+  const [animatedOEE, setAnimatedOEE] = useState(0);
 
   useEffect(() => {
-    let startTime = null;
-    const duration = 500; // 1 second
+    let start = 0;
+    const duration = 500; // 500ms
+    const startTime = performance.now();
 
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      const value = Math.round(progress * targetValue);
-      setDisplayValue(value);
+      const value = Math.round(progress * finalOEE);
+      setAnimatedOEE(value);
 
       if (progress < 1) {
         requestAnimationFrame(animate);
@@ -32,81 +34,49 @@ const OEEChart = () => {
     };
 
     requestAnimationFrame(animate);
-  }, [targetValue]);
+  }, [finalOEE]);
 
   return (
-    <div className="w-full max-w-sm mx-auto bg-white shadow-md p-4 ">
-      <h2 className="text-slate-500 font-semibold text-[20px] mb-5 text-center">
+    <div className="bg-white drop-shadow-lg OEEbg" style={{ width: 400 }}>
+      <h2 className="text-lg font-semibold text-gray-600 mb-2 text-center OEEtext">
         Overall Equipment Effectiveness
       </h2>
-      <div className="w-full h-72 relative">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <defs>
-              <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-                <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="#000" floodOpacity="0.2" />
-              </filter>
-            </defs>
-
-            <Pie
-              data={oeeData}
-              dataKey="value"
-              innerRadius="60%"
-              outerRadius="100%"
-              paddingAngle={5}
-              startAngle={90}
-              endAngle={-270}
-            >
-              {oeeData.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-
-
-            <circle
-              cx="50%"
-              cy="50%"
-              r="70"
-              fill="white"
-              stroke="#e5e7eb"
-              strokeWidth="2"
-              filter="url(#shadow)"
-            />
-
-            <text
-              x="50%" y="45%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize="40"
-              fill="#ef4444"
-              className="font-bold"
-            >
-              {`${displayValue}%`}
-            </text>
-            <text
-              x="50%" y="60%"
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize="25"
-              fill="#000"
-              className="font-bold"
-            >
-              OEE
-            </text>
-          </PieChart>
-        </ResponsiveContainer>
+      <ResponsiveContainer width="100%" height={300}>
+        <PieChart>
+          <Pie
+            data={data}
+            innerRadius={70} // หนาขึ้น
+            outerRadius={120}
+            dataKey="value"
+            startAngle={90}
+            endAngle={-270}
+            stroke="none"
+          >
+            {data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+            ))}
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+      <div className="absolute top-[150px] left-1/2 transform -translate-x-1/2 text-center">
+        <p className="text-2xl font-bold">OEE</p>
+        <p className="text-4xl font-extrabold text-red-500 drop-shadow">
+          {animatedOEE} %
+        </p>
       </div>
-
-      <div className="flex flex-wrap justify-center gap-4 mt-4 text-sm">
-        {oeeData.map((entry, index) => (
-          <div key={entry.name} className="flex items-center gap-2">
-            <span
-              className="inline-block w-3 h-3 rounded-full"
-              style={{ backgroundColor: COLORS[index] }}
-            ></span>
-            <span className="text-gray-700 font-medium">{entry.name}</span>
-          </div>
-        ))}
+      <div className="mt-4 flex justify-around text-sm font-semibold">
+        <div className="flex items-center gap-1">
+          <span className="w-4 h-4 bg-[#0f111a] rounded-sm"></span>
+          Performance
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="w-4 h-4 bg-[#475be8] rounded-sm"></span>
+          Availability
+        </div>
+        <div className="flex items-center gap-1">
+          <span className="w-4 h-4 bg-[#e4e8f0] rounded-sm"></span>
+          Quality
+        </div>
       </div>
     </div>
   );

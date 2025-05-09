@@ -1,38 +1,47 @@
-/* ปรับ header */
+/* ปรับ header ให้รองรับ Full HD ขึ้นไป */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 2%; /* ลด padding ด้านซ้าย */
+  padding: 12px clamp(1rem, 2vw, 3rem); /* padding ซ้าย-ขวา responsive */
+  width: 100%;
+  max-width: 100%; /* ขยายให้เต็มหน้าจอ */
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 header .header-title {
-  font-size: 30px; /* ขนาดฟอนต์ */
+  font-size: clamp(1.5rem, 2vw, 2.5rem); /* ขนาดฟอนต์ responsive */
   font-weight: bold;
   color: black;
+  text-align: left; /* ให้ text title อยู่ทางซ้าย */
 }
 
-/* กลุ่มของปุ่มหรือ section ที่ใช้ flex */
+/* Flex กลุ่มขวา */
 header .flex {
   display: flex;
-  align-items: center; /* ให้มีการจัดตำแหน่งให้อยู่กลางในแนวตั้ง */
+  align-items: center;
+  gap: clamp(0.5rem, 1vw, 1.5rem); /* ระยะห่างระหว่างไอเทม responsive */
 }
 
 header .ml-auto {
-  margin-left: auto; /* ให้ฝั่งขวาถอยไปทางซ้าย */
+  margin-left: auto; /* ย้ายขวา */
 }
 
-/* ปรับความยืดหยุ่นให้ search bar หายไปเมื่อ responsive */
+/* Responsive: ซ่อน search + profile เมื่อจอเล็ก */
 @media (max-width: 1000px) {
   .sm\:flex {
-    display: none; /* ซ่อนส่วนของ search bar และ profile เมื่อหน้าจอเล็ก */
-  }
-
-  header {
-    padding: 12px 5%; /* เพิ่ม padding ด้านขวาและซ้ายเมื่อหน้าจอเล็ก */
+    display: none !important; /* ซ่อนเมื่อจอเล็ก */
   }
 
   header .header-title {
-    font-size: 24px; /* ลดขนาดฟอนต์เมื่อหน้าจอเล็ก */
+    font-size: 1.25rem; /* ลดขนาด font สำหรับจอเล็ก */
+  }
+
+  header {
+    padding: 10px 2rem; /* ลด padding เมื่อจอเล็ก */
   }
 }

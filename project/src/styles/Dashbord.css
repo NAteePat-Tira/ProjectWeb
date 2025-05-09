@@ -8,11 +8,12 @@
 }
 
 .dashboard-container {
-  padding: 30px 20px;  /* 30px on top/bottom and 20px left/right */
-  margin-left: 20px;    /* margin-left */
-  margin-right: 20px;   /* margin-right */
+  padding: 30px 20px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: #f9fafb;
   min-height: 100vh;
+  max-width: 1200px;
 }
 
 .dashboard-title {
@@ -22,14 +23,14 @@
   margin-bottom: 30px;
 }
 
-/* สำหรับกราฟ OEE, EFF และ Task */
 .dashboard-top {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
 }
 
-.oee-card, .compare-card {
+.oee-card,
+.compare-card {
   background: #ffffff;
   padding: 10px;
   border-radius: 16px;
@@ -53,12 +54,11 @@
   margin-right: 20px;
 }
 
-/* Filter Bar */
 .filter-bar {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 10px 50px 20px 30px;
+  padding: 10px 20px 20px 20px;
   position: relative;
 }
 
@@ -66,14 +66,13 @@
   content: '';
   position: absolute;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1170px;
-  border-bottom: 2px solid #000000;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background-color: #000;
   border-radius: 10px;
 }
 
-/* Filters */
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -125,17 +124,17 @@
   box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
-/* Info Cards */
 .cards-row {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 .info-card {
   position: relative;
-  width: 220px;
+  width: calc(20% - 20px); /* 5 cards per row with 20px gap between them */
   height: 130px;
   background: white;
   border-radius: 12px;
@@ -227,7 +226,6 @@
   color: #94a3b8;
 }
 
-/* OEE Chart */
 .oee-chart {
   background: #f9f9f9;
   padding: 15px;
@@ -260,7 +258,6 @@
   margin-top: 10px;
 }
 
-/* Task Completion Chart */
 .task-chart {
   background: #fff;
   padding: 15px;
@@ -274,91 +271,97 @@
   color: green;
 }
 
-/* Responsive Design */
-@media (max-width: 1000px) {
-  .filter-bar {
-    display: none;  /* Hide filter bar */
+@media (max-width: 1024px) {
+  .info-card {
+    width: calc(25% - 20px); /* 4 cards per row on medium screens */
   }
 }
 
 @media (max-width: 768px) {
-  .filter-bar {
-    padding: 10px 20px;  /* ลด padding สำหรับมือถือ */
-  }
-
-  .dashboard-top {
-    flex-direction: column; /* เปลี่ยนแนวการวางการ์ด */
-  }
-
-  .oee-card, .compare-card {
-    flex: 1 0 100%;  /* ให้การ์ดกว้างเต็มจอ */
-  }
-
-  .task-card {
-    margin-left: 0;  /* ไม่มี margin ซ้าย */
-    margin-right: 0; /* ไม่มี margin ขวา */
-    margin-top: 10px;
-  }
-
-  .filter-bar::after {
-    width: 100%; /* ให้เส้นยาวเต็มความกว้าง */
+  .info-card {
+    width: calc(33.333% - 20px); /* 3 cards per row on smaller screens */
   }
 }
 
-/*Task Graph main page */
-.container{
+@media (max-width: 480px) {
+  .info-card {
+    width: 100%; /* 1 card per row on very small screens */
+  }
+}
+
+
+/* กำหนดให้ container ใช้ flexbox เพื่อจัดตำแหน่ง */
+.taskcontain{
   margin-top: 20px;
-}
 
-.graphmove{
-  margin-top: 10px;
 }
-.textmove{
-  margin-left: 15px;
-  margin-top : 10px;
-}
-.background{
-  padding-left: 20px;     
-  padding-right: 20px;    
+.container {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-left:20px;
+  padding-right:20px;
+  padding-bottom:10px;
   padding-top:10px;
 }
 
-/*OEE Graph main page*/
+/* ให้ background มีการจัดเนื้อหาภายในอย่างเหมาะสม */
+.background {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  width: 100%; /* กำหนดให้กว้างเต็มหน้าจอ */
+  max-width: 1200px; /* กำหนดขนาดสูงสุด */
+  margin: 0 auto; /* จัดให้ background อยู่กลางหน้าจอ */
+}
 
-.OEE_EFFcontain{
+/* สำหรับกราฟใน graphmove */
+.graphmove {
+  margin-top:10px;
+  width: 100%; /* กำหนดให้กราฟมีความกว้างเต็ม */
+  margin: 0 auto; /* จัดกราฟให้อยู่กลาง */
+  
+}
+
+/* กำหนด margin และ padding สำหรับ text */
+.textmove {
+  margin-left: 15px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+
+.OEE_EFFcontain {
   margin-top: 20px;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .OEEtop {
-  margin-top : 10px
-}
-
-.OEEbg{
-  padding-left: 20px;
-}
-.OEEtext{
   margin-top: 10px;
-  
-}
-.OEEbg{
-  padding-top:2px;
-  padding-bottom:2px;
 }
 
-/*Eff Graph main page*/
-.Effcontain{
+.OEEbg {
+  padding-top: 2px;
+  padding-bottom: 10px;
+}
+
+.OEEtext {
+  margin-top:10px;
+}
+
+.Effcontain {
   margin-left: 20px;
 }
 
-.Efftext{
-  margin-left:15px;
+.Efftext {
+  margin-left: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.Effbg{
+.Effbg {
   padding-top: 0.04px;
-  padding-bottom:10px;
+
 }

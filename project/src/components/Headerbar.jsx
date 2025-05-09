@@ -17,7 +17,7 @@ export default function Header() {
   const pageTitle = pageTitles[location.pathname] || 'Over All Dashboard';
 
   return (
-    <header className="flex justify-between items-center px-6 py-3 bg-white shadow sticky top-0 z-20 w-full h-[65px]">
+    <header className="flex justify-between items-center px-6 py-3  top-0 z-20 w-full h-[65px]">
       {/* Page Title */}
       <h1 className="header-title"> {/* Use the custom class here */}
         {pageTitle}

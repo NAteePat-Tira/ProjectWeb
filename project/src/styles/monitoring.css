@@ -30,7 +30,6 @@
   flex: 1;
   background-color: #fff;
   padding: 20px;
-  border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   overflow-y: auto; 
   max-height: calc(100vh - 160px); /* ความสูงจะเป็นหน้าจอลบพื้นที่ของ header และ margin */
@@ -47,6 +46,7 @@
   background-color: #fff;
   padding-right: 20px;
   z-index: 10;
+
 }
 
 .product-card-container {
@@ -119,4 +119,33 @@
   color: #999;
   margin-left: 20px;
   border-radius: 6px;
+}
+
+
+/* camera Feed */
+
+.Camerabg{
+  margin-top: 20px;
+  margin-left: 30px;
+  margin-right: 30px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-left :20px;
+  padding-bottom: 185px;
+
+}
+
+.pmbg{
+  margin-top: 20px;
+  margin-left : 50px;
+  margin-right: 70px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.card{
+  margin-top: 20px;
+}
+.text {
+  margin-top : 10px;
 }

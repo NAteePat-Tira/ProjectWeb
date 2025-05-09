@@ -11,14 +11,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: clamp(14rem, 16vw, 20rem); /* responsive width */
+  width: clamp(14rem, 16vw, 20rem);
   height: 100vh;
   background-color: #171d2d;
   color: white;
   padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
-  font-size: clamp(0.8rem, 1vw, 1rem); /* responsive text */
+  font-size: clamp(0.8rem, 1vw, 1rem);
 }
 
 .sidebar h1 {
@@ -76,3 +76,33 @@
   flex-direction: column;
   gap: 0.75rem;
 }
+
+/* ------ Header ------ */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px clamp(1rem, 2vw, 3rem); /* Responsive padding */
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  
+  header h1 {
+    font-size: clamp(1.5rem, 2vw, 2.5rem);
+    font-weight: bold;
+    margin: 0;
+    color: #1a1a1a;
+  }
+  
+  header .flex {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 1vw, 1.5rem);
+  }
+  
+  header .avatar {
+    width:
+  }  
