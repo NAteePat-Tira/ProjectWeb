@@ -1,35 +1,43 @@
-import React from "react";
+import React from 'react';
 import {
   ComposedChart,
   Bar,
   Line,
   XAxis,
   YAxis,
+  CartesianGrid,
   Tooltip,
   ResponsiveContainer,
   LabelList,
-} from "recharts";
+  Legend,
+} from 'recharts';
 
-const ProcessGraph = ({ data, title }) => {
-  const sortedData = [...data].sort((a, b) => b.step - a.step); // Step 10 to 1
-
+const GraphChart = ({ title, data }) => {
   return (
-    <div className="flex justify-center items-center w-full">
-      <div className="w-[300px] bg-white shadow-md rounded p-2 m-2">
-        <h3 className="text-center font-semibold text-gray-600 mb-2">{title}</h3>
-        <ResponsiveContainer width="100%" height={550}>
+    <div className="bg-white shadow-md rounded-lg p-4 min-w-[320px] max-w-[400px] min-h-[700px]"> {/* ✅ เพิ่มความสูงตรงนี้ */}
+      <h3 className="text-center font-semibold mb-4 text text-xl">{title}</h3>
+      <div className="w-full h-[800px] items-center"> {/* ✅ เพิ่มความสูงของกราฟ */}
+        <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             layout="vertical"
-            data={sortedData}
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+            data={data}
+            margin={{ top: 20, right: 40, left: 0, bottom: 10 }}
           >
-            <XAxis type="number" domain={[0, 'dataMax + 50']} />
-            <YAxis type="category" dataKey="step" />
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis type="number" />
+            <YAxis type="category" dataKey="cycleTime" />
             <Tooltip />
-            <Bar dataKey="value" barSize={20} fill="rgba(106, 90, 205, 0.6)">
-              <LabelList dataKey="value" position="right" fill="#333" />
+            <Legend />
+            <Bar dataKey="count" fill="#8884d8">
+              <LabelList dataKey="count" position="right" />
             </Bar>
-            <Line type="monotone" dataKey="value" stroke="#e60000" dot={{ r: 3 }} />
+            <Line
+              dataKey="count"
+              type="monotone"
+              stroke="#ff0000"
+              dot={{ r: 3 }}
+              isAnimationActive={false}
+            />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
@@ -37,4 +45,4 @@ const ProcessGraph = ({ data, title }) => {
   );
 };
 
-export default ProcessGraph;
+export default GraphChart;

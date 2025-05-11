@@ -4,14 +4,19 @@ import { Monitor, MicOff } from 'lucide-react';
 
 const CameraFeed = () => {
   return (
-    <div className="w-full max-w-full bg-white shadow-md  Camerabg">
+    <div className="w-full max-w-full p-4 bg-white shadow-md Camerabg cameramargin">
       {/* Live Camera Feed */}
-      <div className="shadow-md rounded-md bg-white">
+      <div className="s mb-6">
         <div className="p-4">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4">Live Camera Feed</h2>
-          <div className="bg-gray-400 w-full h-60 rounded-md"></div>
-          <div className="flex items-center justify-between mt-4">
-            <div className="space-x-2 flex">
+          <h2 className="text-lg font-semibold text-gray-700 ">Live Camera Feed</h2>
+          <div className="bg-gray-400 w-full min-h-[200px] md:min-h-[240px] lg:min-h-[300px] rounded-md cameravideo">
+
+
+
+
+          </div>
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between mt-4 gap-4">
+            <div className="flex space-x-2">
               <button className="px-3 py-1.5 bg-violet-600 text-white text-sm rounded hover:bg-violet-700 flex items-center">
                 <Monitor className="w-4 h-4 mr-1" /> Stream
               </button>
@@ -21,7 +26,7 @@ const CameraFeed = () => {
             </div>
             <div className="flex items-center space-x-2">
               <span className="text-sm text-red-600 font-medium flex items-center gap-2">
-                <span className="w-2 h-2 bg-red-600 rounded-full mr-1 ga"></span>
+                <span className="w-2 h-2 bg-red-600 rounded-full"></span>
                 Offline
               </span>
               <button className="px-2 py-1 border rounded border-gray-300">
@@ -41,13 +46,13 @@ const CameraFeed = () => {
 
       {/* Part image */}
       <div>
-        <h2 className="text-lg font-semibold text-gray-700 mb-2">Part image</h2>
+        <h2 className="text-lg font-semibold text-gray-700 mb-2">Part Image</h2>
         <div className="shadow-md rounded-md bg-white">
           <div className="p-2">
             <img
               src="/images/part.png"
               alt="Part"
-              className="rounded-md w-full object-contain"
+              className="rounded-md w-full h-auto object-contain"
             />
           </div>
         </div>

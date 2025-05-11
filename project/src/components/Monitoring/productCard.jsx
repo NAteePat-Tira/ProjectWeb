@@ -1,23 +1,24 @@
 import React from 'react';
+import '../../styles/Monitoring.css';
 
-const ProductCard = ({ number }) => {
+const ProductCard = ({ number, pn, line, ct, time, status, processes }) => {
   return (
     <div className="product-card">
       <div className="product-details">
         <div className="product-header">
           <strong>Product NO : {number}</strong>
-          <span>P/N: ZG 1234</span>
-          <span>Line: A</span>
-          <span>CT: 3 Sec</span>
-          <span>00:00:00</span>
-          <span className="status-ok">OK</span>
+          <span>P/N: {pn}</span>
+          <span>Line: {line}</span>
+          <span>CT: {ct}</span>
+          <span>{time}</span>
+          <span className={`status-${status.toLowerCase()}`}>{status}</span>
         </div>
 
         <div className="product-process">
-          {[1, 2, 3, 4, 5].map((proc, idx) => (
-            <div key={proc} className="process-step">
-              <div>Process {proc}</div>
-              <div>{idx === 2 ? '1 Sec' : '0.5 Sec'}</div>
+          {processes.map((proc, idx) => (
+            <div key={idx} className="process-step">
+              <div>Process {proc.step}</div>
+              <div>{proc.time}</div>
             </div>
           ))}
         </div>

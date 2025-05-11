@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import Filter from '../components/Monitoring/Filter';
-import '../styles/Monitoring.css';
+import '../styles/monitoring.css';
 import CameraFeed from '../components/Monitoring/Camera';
-import ProductCard from '../components/Monitoring/productCard';
+import ProductCard from '../components/Monitoring/ProductCard';
 
 const Monitoring = () => {
-  // Filter states
   const [date, setDate] = useState('');
   const [product, setProduct] = useState('None');
   const [partNumber, setPartNumber] = useState('None');
@@ -27,89 +26,90 @@ const Monitoring = () => {
     setLine('None');
     setShift('None');
     setProcess('None');
-    setCurrentPage(1);
   };
 
-  // Mock data
-  const products = [
-    { id: 1, pn: 'ZG1234', line: 'A', shift: 'Shift 1', product: 'Gear', process: 'Process A' },
-    { id: 2, pn: 'ZG2264', line: 'B', shift: 'Shift 2', product: 'Apple', process: 'Process B' },
-    { id: 3, pn: 'ZG1234', line: 'A', shift: 'Shift 1', product: 'Gear', process: 'Process C' },
-    { id: 4, pn: 'ZG2264', line: 'B', shift: 'Shift 2', product: 'Apple', process: 'Process A' },
-    { id: 5, pn: 'ZG1234', line: 'A', shift: 'Shift 1', product: 'Gear', process: 'Process B' },
-    { id: 6, pn: 'ZG2264', line: 'B', shift: 'Shift 2', product: 'Apple', process: 'Process C' },
+  // Mock product data
+  const productData = [
+    { number: 1, pn: 'ZG 1234', line: 'A', ct: '3 Sec', time: '00:00:01', status: 'OK', processes: [{ step: 1, time: '0.5 Sec' }, { step: 2, time: '0.5 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
+    { number: 2, pn: 'ZG 5678', line: 'B', ct: '4 Sec', time: '00:00:03', status: 'NG', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
+    { number: 3, pn: 'ZG 9101', line: 'C', ct: '2 Sec', time: '00:00:02', status: 'OK', processes: [{ step: 1, time: '0.3 Sec' }, { step: 2, time: '0.4 Sec' }, { step: 3, time: '0.6 Sec' }, { step: 4, time: '0.4 Sec' }, { step: 5, time: '0.3 Sec' }] },
+    { number: 4, pn: 'ZG 1122', line: 'A', ct: '5 Sec', time: '00:00:04', status: 'OK', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '1 Sec' }, { step: 5, time: '1 Sec' }] },
+    { number: 5, pn: 'ZG 3344', line: 'B', ct: '6 Sec', time: '00:00:06', status: 'NG', processes: [{ step: 1, time: '2 Sec' }, { step: 2, time: '1.5 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.8 Sec' }, { step: 5, time: '0.7 Sec' }] },
+    { number: 6, pn: 'ZG 7788', line: 'C', ct: '3.5 Sec', time: '00:00:03', status: 'OK', processes: [{ step: 1, time: '0.6 Sec' }, { step: 2, time: '0.7 Sec' }, { step: 3, time: '0.8 Sec' }, { step: 4, time: '0.7 Sec' }, { step: 5, time: '0.7 Sec' }] },
+    { number: 7, pn: 'ZG 9988', line: 'A', ct: '2.5 Sec', time: '00:00:02', status: 'OK', processes: [{ step: 1, time: '0.5 Sec' }, { step: 2, time: '0.5 Sec' }, { step: 3, time: '0.5 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
+    { number: 8, pn: 'ZG 4433', line: 'B', ct: '4 Sec', time: '00:00:04', status: 'NG', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
+    { number: 9, pn: 'ZG 5566', line: 'C', ct: '3 Sec', time: '00:00:03', status: 'OK', processes: [{ step: 1, time: '0.7 Sec' }, { step: 2, time: '0.7 Sec' }, { step: 3, time: '0.8 Sec' }, { step: 4, time: '0.4 Sec' }, { step: 5, time: '0.4 Sec' }] },
+    { number: 10, pn: 'ZG 6677', line: 'A', ct: '4.5 Sec', time: '00:00:05', status: 'NG', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.75 Sec' }, { step: 5, time: '0.75 Sec' }] }
   ];
-
-  const filteredProducts = products.filter((p) => {
-    return (
-      (product === 'None' || p.product === product) &&
-      (partNumber === 'None' || p.pn === partNumber) &&
-      (line === 'None' || p.line === line) &&
-      (shift === 'None' || p.shift === shift) &&
-      (process === 'None' || p.process === process)
-    );
-  });
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
-
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+  const paginatedProducts = productData.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(productData.length / itemsPerPage);
+
+  // Function to handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
-    <div className="px-6 flex flex-col p-[30px] bg-gray-100 min-h-screen overflow-hidden"> {/* ใส่ overflow-hidden ที่นี่ */}
-      <div className="ml-6">
-        <Filter
-          date={date}
-          product={product}
-          partNumber={partNumber}
-          shift={shift}
-          line={line}
-          process={process}
-          onDateChange={handleDateChange}
-          onProductChange={handleProductChange}
-          onPartChange={handlePartChange}
-          onShiftChange={handleShiftChange}
-          onLineChange={handleLineChange}
-          onProcessChange={handleProcessChange}
-          onClearFilters={handleClearFilters}
-        />
-      </div>
+    <div className="px-6 flex flex-col p-[30px] bg-gray-100 min-h-screen overflow-hidden">
+  <div className="ml-6">
+    <Filter
+      date={date}
+      product={product}
+      partNumber={partNumber}
+      shift={shift}
+      line={line}
+      process={process}
+      onDateChange={handleDateChange}
+      onProductChange={handleProductChange}
+      onPartChange={handlePartChange}
+      onShiftChange={handleShiftChange}
+      onLineChange={handleLineChange}
+      onProcessChange={handleProcessChange}
+      onClearFilters={handleClearFilters}
+    />
+  </div>
 
-      <div className="flex justify-between gap-6 mt-4">
-        {/* Camera Section */}
-        <div className="flex-[1.3] min-w-[300px]">
-          <CameraFeed />
-        </div>
+<div className="flex justify-between gap-6 cammera_product">
+  {/* Camera Section */}
+  <div className="flex-[1.3] min-w-[300px] ">
+    <CameraFeed />
+  </div>
 
-        {/* Pagination Controls */}
-        <div className="flex-[1.7] min-w-[500px]">
-          <div className="pmbg bg-white p-4 rounded shadow " style={{ maxHeight: '640px' }}>
-            
-            {/* หัวข้อ Fix อยู่ด้านบน */}
-            <h3 className="text-xl font-semibold mb-4 bg-white sticky top-0 z-10 pt-2 pb-2 text">
-              Monitoring Product
-            </h3>
+  {/* Product Cards */}
+  <div className="flex-[1.7] min-w-[500px] m-4">
+    <div className="pmbg bg-white p-4 rounded shadow" style={{ maxHeight: '700px' }}>
+      <h3 className="text-xl font-semibold  bg-white text">
+        Monitoring Product
+      </h3>
 
-            {/* Scroll section - limit to 3 card height */}
-            <div className="overflow-y-auto space-y-4 card" style={{ maxHeight: '500px' }}>
-              {filteredProducts.map((product, idx) => (
-                <div 
-                  key={product.id} 
-                  className={`relative ${idx >= 3 ? 'z-0' : 'z-10'}`} // ใส่ z-index ตามลำดับ
-                >
-                  <ProductCard number={product.id} />
-                </div>
-              ))}
-            </div>
-            
+      <div className="overflow-y-auto max-h-[600px] space-y-4 card">
+        {productData.map((product, idx) => (
+          <div key={product.number} className="relative">
+            <ProductCard
+              number={product.number}
+              pn={product.pn}
+              line={product.line}
+              ct={product.ct}
+              time={product.time}
+              status={product.status}
+              processes={product.processes}
+            />
           </div>
-        </div>
+        ))}
       </div>
+
     </div>
+  </div>
+</div>
+
+</div>
+
   );
 };
 
