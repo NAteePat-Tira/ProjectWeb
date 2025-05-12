@@ -11,9 +11,7 @@ const data = [
 const COLORS = ["#0f111a", "#475be8", "#e4e8f0"];
 
 const OEEChart = () => {
-  const finalOEE = Math.round(
-    data.reduce((product, d) => product * d.value, 1) * 100
-  );
+  const finalOEE = 85; // Set OEE to 85%
 
   const [animatedOEE, setAnimatedOEE] = useState(0);
 

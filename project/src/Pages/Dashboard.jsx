@@ -121,35 +121,35 @@ const Dashboard = () => {
           <div className="flex flex-wrap gap-4 justify-center ">
             <InfoCard 
               title="Today Plans" 
-              value={filteredProduct?.plan || 0} 
+              value="60000"
               unit="Pcs." 
               change="0%" 
               status="up" 
             />
             <InfoCard 
               title="Actual" 
-              value={filteredProduct?.actual || 0} 
+              value="56000"
               unit="Pcs." 
               change="0%" 
               status="down" 
             />
             <InfoCard 
               title="Defect" 
-              value={filteredProduct?.defect || 0}  
+              value="4000" 
               unit="Pcs." 
               change="0%" 
               status="down" 
             />
             <InfoCard 
               title="Down Time" 
-              value={filteredEff?.downtime || "00:00:00"} 
+              value="210"
               unit="min." 
               change="0%" 
               status="down" 
             />
             <InfoCard 
               title="Efficiency (%)" 
-              value={filteredEff?.eff?.toFixed(2) || 0} 
+              value="75"
               unit="%" 
               change="0%" 
               status="up" 
