@@ -1,7 +1,4 @@
-import React from 'react';
-import '../../styles/Monitoring.css';
-
-const ProductCard = ({ number, pn, line, ct, time, status, processes }) => {
+const ProductCard = ({ number, pn, line, ct, time, status, processes, videoId }) => {
   return (
     <div className="product-card">
       <div className="product-details">
@@ -24,9 +21,15 @@ const ProductCard = ({ number, pn, line, ct, time, status, processes }) => {
         </div>
       </div>
 
-      <div className="product-video-placeholder">800 × 450</div>
+      <div className="product-video">
+        <iframe
+          src={`https://drive.google.com/file/d/${videoId}/preview`}
+          width="800"
+          height="450"
+          allow="autoplay"
+          title={`Product ${number} Video`}
+        ></iframe>
+      </div>
     </div>
   );
 };
-
-export default ProductCard;

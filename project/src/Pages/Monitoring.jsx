@@ -28,19 +28,169 @@ const Monitoring = () => {
     setProcess('None');
   };
 
-  // Mock product data
-  const productData = [
-    { number: 1, pn: 'ZG 1234', line: 'A', ct: '3 Sec', time: '00:00:01', status: 'OK', processes: [{ step: 1, time: '0.5 Sec' }, { step: 2, time: '0.5 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
-    { number: 2, pn: 'ZG 5678', line: 'B', ct: '4 Sec', time: '00:00:03', status: 'NG', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
-    { number: 3, pn: 'ZG 9101', line: 'C', ct: '2 Sec', time: '00:00:02', status: 'OK', processes: [{ step: 1, time: '0.3 Sec' }, { step: 2, time: '0.4 Sec' }, { step: 3, time: '0.6 Sec' }, { step: 4, time: '0.4 Sec' }, { step: 5, time: '0.3 Sec' }] },
-    { number: 4, pn: 'ZG 1122', line: 'A', ct: '5 Sec', time: '00:00:04', status: 'OK', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '1 Sec' }, { step: 5, time: '1 Sec' }] },
-    { number: 5, pn: 'ZG 3344', line: 'B', ct: '6 Sec', time: '00:00:06', status: 'NG', processes: [{ step: 1, time: '2 Sec' }, { step: 2, time: '1.5 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.8 Sec' }, { step: 5, time: '0.7 Sec' }] },
-    { number: 6, pn: 'ZG 7788', line: 'C', ct: '3.5 Sec', time: '00:00:03', status: 'OK', processes: [{ step: 1, time: '0.6 Sec' }, { step: 2, time: '0.7 Sec' }, { step: 3, time: '0.8 Sec' }, { step: 4, time: '0.7 Sec' }, { step: 5, time: '0.7 Sec' }] },
-    { number: 7, pn: 'ZG 9988', line: 'A', ct: '2.5 Sec', time: '00:00:02', status: 'OK', processes: [{ step: 1, time: '0.5 Sec' }, { step: 2, time: '0.5 Sec' }, { step: 3, time: '0.5 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
-    { number: 8, pn: 'ZG 4433', line: 'B', ct: '4 Sec', time: '00:00:04', status: 'NG', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.5 Sec' }, { step: 5, time: '0.5 Sec' }] },
-    { number: 9, pn: 'ZG 5566', line: 'C', ct: '3 Sec', time: '00:00:03', status: 'OK', processes: [{ step: 1, time: '0.7 Sec' }, { step: 2, time: '0.7 Sec' }, { step: 3, time: '0.8 Sec' }, { step: 4, time: '0.4 Sec' }, { step: 5, time: '0.4 Sec' }] },
-    { number: 10, pn: 'ZG 6677', line: 'A', ct: '4.5 Sec', time: '00:00:05', status: 'NG', processes: [{ step: 1, time: '1 Sec' }, { step: 2, time: '1 Sec' }, { step: 3, time: '1 Sec' }, { step: 4, time: '0.75 Sec' }, { step: 5, time: '0.75 Sec' }] }
-  ];
+ const productData = [
+  {
+    number: 1,
+    pn: 'ZG 1234',
+    line: 'A',
+    ct: '3 Sec',
+    time: '00:00:01',
+    status: 'OK',
+    videoId: '1ABC123DriveVideoID',
+    processes: [
+      { step: 1, time: '0.5 Sec' },
+      { step: 2, time: '0.5 Sec' },
+      { step: 3, time: '1 Sec' },
+      { step: 4, time: '0.5 Sec' },
+      { step: 5, time: '0.5 Sec' }
+    ]
+  },
+  {
+    number: 2,
+    pn: 'ZG 5678',
+    line: 'B',
+    ct: '4 Sec',
+    time: '00:00:03',
+    status: 'NG',
+    videoId: '1DEF456DriveVideoID',
+    processes: [
+      { step: 1, time: '1 Sec' },
+      { step: 2, time: '1 Sec' },
+      { step: 3, time: '1 Sec' },
+      { step: 4, time: '0.5 Sec' },
+      { step: 5, time: '0.5 Sec' }
+    ]
+  },
+  {
+    number: 3,
+    pn: 'ZG 9101',
+    line: 'C',
+    ct: '2 Sec',
+    time: '00:00:02',
+    status: 'OK',
+    videoId: '1GHI789DriveVideoID',
+    processes: [
+      { step: 1, time: '0.3 Sec' },
+      { step: 2, time: '0.4 Sec' },
+      { step: 3, time: '0.6 Sec' },
+      { step: 4, time: '0.4 Sec' },
+      { step: 5, time: '0.3 Sec' }
+    ]
+  },
+  {
+    number: 4,
+    pn: 'ZG 1122',
+    line: 'A',
+    ct: '5 Sec',
+    time: '00:00:04',
+    status: 'OK',
+    videoId: '1JKL012DriveVideoID',
+    processes: [
+      { step: 1, time: '1 Sec' },
+      { step: 2, time: '1 Sec' },
+      { step: 3, time: '1 Sec' },
+      { step: 4, time: '1 Sec' },
+      { step: 5, time: '1 Sec' }
+    ]
+  },
+  {
+    number: 5,
+    pn: 'ZG 3344',
+    line: 'B',
+    ct: '6 Sec',
+    time: '00:00:06',
+    status: 'NG',
+    videoId: '1MNO345DriveVideoID',
+    processes: [
+      { step: 1, time: '2 Sec' },
+      { step: 2, time: '1.5 Sec' },
+      { step: 3, time: '1 Sec' },
+      { step: 4, time: '0.8 Sec' },
+      { step: 5, time: '0.7 Sec' }
+    ]
+  },
+  {
+    number: 6,
+    pn: 'ZG 7788',
+    line: 'C',
+    ct: '3.5 Sec',
+    time: '00:00:03',
+    status: 'OK',
+    videoId: '1PQR678DriveVideoID',
+    processes: [
+      { step: 1, time: '0.6 Sec' },
+      { step: 2, time: '0.7 Sec' },
+      { step: 3, time: '0.8 Sec' },
+      { step: 4, time: '0.7 Sec' },
+      { step: 5, time: '0.7 Sec' }
+    ]
+  },
+  {
+    number: 7,
+    pn: 'ZG 9988',
+    line: 'A',
+    ct: '2.5 Sec',
+    time: '00:00:02',
+    status: 'OK',
+    videoId: '1STU901DriveVideoID',
+    processes: [
+      { step: 1, time: '0.5 Sec' },
+      { step: 2, time: '0.5 Sec' },
+      { step: 3, time: '0.5 Sec' },
+      { step: 4, time: '0.5 Sec' },
+      { step: 5, time: '0.5 Sec' }
+    ]
+  },
+  {
+    number: 8,
+    pn: 'ZG 4433',
+    line: 'B',
+    ct: '4 Sec',
+    time: '00:00:04',
+    status: 'NG',
+    videoId: '1VWX234DriveVideoID',
+    processes: [
+      { step: 1, time: '1 Sec' },
+      { step: 2, time: '1 Sec' },
+      { step: 3, time: '1 Sec' },
+      { step: 4, time: '0.5 Sec' },
+      { step: 5, time: '0.5 Sec' }
+    ]
+  },
+  {
+    number: 9,
+    pn: 'ZG 5566',
+    line: 'C',
+    ct: '3 Sec',
+    time: '00:00:03',
+    status: 'OK',
+    videoId: '1YZA567DriveVideoID',
+    processes: [
+      { step: 1, time: '0.7 Sec' },
+      { step: 2, time: '0.7 Sec' },
+      { step: 3, time: '0.8 Sec' },
+      { step: 4, time: '0.4 Sec' },
+      { step: 5, time: '0.4 Sec' }
+    ]
+  },
+  {
+    number: 10,
+    pn: 'ZG 6677',
+    line: 'A',
+    ct: '4.5 Sec',
+    time: '00:00:05',
+    status: 'NG',
+    videoId: '1BCD890DriveVideoID',
+    processes: [
+      { step: 1, time: '1 Sec' },
+      { step: 2, time: '1 Sec' },
+      { step: 3, time: '1 Sec' },
+      { step: 4, time: '0.75 Sec' },
+      { step: 5, time: '0.75 Sec' }
+    ]
+  }
+];
+
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -92,14 +242,16 @@ const Monitoring = () => {
         {productData.map((product, idx) => (
           <div key={product.number} className="relative">
             <ProductCard
-              number={product.number}
-              pn={product.pn}
-              line={product.line}
-              ct={product.ct}
-              time={product.time}
-              status={product.status}
-              processes={product.processes}
-            />
+                key={product.number}
+                number={product.number}
+                pn={product.pn}
+                line={product.line}
+                ct={product.ct}
+                time={product.time}
+                status={product.status}
+                processes={product.processes}
+                videoId={product.videoId}  // ส่ง videoId เข้าไป
+              />
           </div>
         ))}
       </div>

@@ -16,7 +16,7 @@ const GraphChart = ({ title, data }) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-4 min-w-[320px] max-w-[400px] min-h-[700px]"> {/* ✅ เพิ่มความสูงตรงนี้ */}
       <h3 className="text-center font-semibold mb-4 text text-xl">{title}</h3>
-      <div className="w-full h-[800px] items-center"> {/* ✅ เพิ่มความสูงของกราฟ */}
+      <div className="w-full h-[600px] items-center"> {/* ✅ เพิ่มความสูงของกราฟ */}
         <ResponsiveContainer width="100%" height="100%">
           <ComposedChart
             layout="vertical"
